@@ -3,38 +3,23 @@
 
 **Saucedemo** adalah situs web simulasi E-Commerce yang digunakan untuk melakukan pengujian antarmuka pengguna dan automasi testing. Situs ini menyediakan alur belanja lengkap, mulai dari login, melihat produk, menambahkan ke keranjang, hingga menyelesaikan transaksi (checkout). 
 
-Website ini sangat cocok digunakan untuk memahami dan mendokumentasikan alur dasar sistem belanja online.
-
 ---
 
 # 🧩 Structure & Content
 
-Saat dilakukan dengan baik, proses dokumentasi fitur akan membantu Product Manager menemukan dan mendefinisikan:
-
-- ✅ What (apa fiturnya?)
-- ✅ Why (mengapa penting?)
-- ✅ How (bagaimana cara kerjanya?)
-- ✅ When (kapan digunakan?)
-- ✅ Who (siapa yang menggunakan?)
-
----
-
 ## ❓ The Why – Problem Statement
+## Login
 
-### Apa yang ingin diselesaikan?
+Pengguna perlu mengakses akun pribadi mereka agar dapat melihat riwayat pesanan, menyimpan produk ke keranjang, dan menyelesaikan transaksi dengan aman. Tanpa login, sistem tidak dapat mengidentifikasi pengguna dan data pengguna tidak bisa disimpan secara personal.
 
-Pengguna memerlukan platform belanja online yang mudah digunakan dan aman. Tanpa sistem login dan checkout yang baik, proses transaksi menjadi membingungkan dan tidak dapat dipercaya.
+## Chechkout
+Pengguna yang telah memilih produk perlu menyelesaikan proses pembelian dengan memberikan data pengiriman dan melakukan konfirmasi. Tanpa fitur checkout, transaksi tidak bisa dicatat dan pengiriman tidak dapat dilakukan.
 
-### Tujuan Fitur:
+### Tujuan Fitur Login & Checkout:
 - Memastikan pengguna hanya dapat mengakses sistem setelah login
 - Memberikan pengalaman checkout yang jelas dan terstruktur
 
-### Manfaat untuk Bisnis:
-- Meningkatkan keamanan data pengguna
-- Meningkatkan tingkat konversi transaksi
-- Memberikan user experience yang baik bagi pengguna awam
-
----
+--- 
 
 ## 🔄 The How – Cara Fitur Bekerja
 
@@ -42,12 +27,12 @@ Pengguna memerlukan platform belanja online yang mudah digunakan dan aman. Tanpa
 - User memasukkan username & password
 - Sistem memverifikasi ke server
 - Jika berhasil, user diarahkan ke halaman produk
-- Jika gagal, tampil alert "Username and password do not match"
+- Jika gagal, tampil alert "Epic sadface: Username and password do not match any user in this service"
 
 ### Checkout
 - User menambahkan produk ke cart
 - Klik cart icon → klik Checkout
-- Isi form data pelanggan (nama, zip code)
+- Isi form data pelanggan (First Name , Last Name , Zip/Postal Code)
 - Konfirmasi transaksi dan tampil halaman sukses
 
 ---
@@ -56,22 +41,11 @@ Pengguna memerlukan platform belanja online yang mudah digunakan dan aman. Tanpa
 
 ### 🛠 Tools: Markdown
 
-### Format Dokumentasi:
-- ✅ Problem Statement
-- ✅ How the Feature Will Work
-- ✅ Functional Requirements
-- ✅ UX/UI
-- ✅ Business Logic
-
----
-
 ## ✅ Functional Requirements
 
 ### Login
 - Form login harus menerima input username & password
-- Validasi input tidak kosong
-- Mengirim permintaan POST ke API login
-- Menyimpan token/session jika berhasil
+- Validasi input tidak boleh kosong
 - Menampilkan pesan jika gagal login
 
 ### Checkout
@@ -83,12 +57,15 @@ Pengguna memerlukan platform belanja online yang mudah digunakan dan aman. Tanpa
 
 ---
 
-## 🎨 UX/UI
+## 🎨 UX/UI Dokumentasi
 
 ### Login
 - 2 Input field: username & password
 - Tombol login
 - Alert error jika login gagal
+
+### UI Login Page
+![Tampilan VSCode Dokumentasi](./assets/LoginPage.png)
 
 ### Checkout
 - Ikon keranjang
@@ -96,13 +73,28 @@ Pengguna memerlukan platform belanja online yang mudah digunakan dan aman. Tanpa
 - Formulir data pembeli
 - Tombol Continue dan Finish
 
+### UI Chart Page
+![Tampilan VSCode Dokumentasi](./assets/ChartPage.png)
+
+### UI Validate Page
+![Tampilan VSCode Dokumentasi](./assets/ValidatePage.png)
+
+### UI Fill Page
+![Tampilan VSCode Dokumentasi](./assets/FillPage.png)
+
+### UI Confirmation Page
+![Tampilan VSCode Dokumentasi](./assets/ConfirmationPage.png)
+
+### UI Checkout Page
+![Tampilan VSCode Dokumentasi](./assets/CheckoutPage.png)
+
 ---
 
 ## ⚙️ Business Logic
 
 - **Login**
-  - Jika kombinasi username/password benar → simpan session/token
-  - Jika salah → tampil alert
+  - Jika kombinasi username/password benar → Redirect ke chart page
+  - Jika salah → tampil alert "Epic sadface: Username and password do not match any user in this service"
 
 - **Checkout**
   - Produk dapat ditambahkan ke cart
@@ -112,38 +104,15 @@ Pengguna memerlukan platform belanja online yang mudah digunakan dan aman. Tanpa
 
 ---
 
-## ✅ Validasi Penting
-
-| Kategori               | Penjelasan                                                             |
-|------------------------|------------------------------------------------------------------------|
-| ✅ Status Code         | Cek status 200 saat login dan checkout berhasil                        |
-| ✅ Response JSON       | Format JSON harus mengandung `token`, `bookingId`, dll                 |
-| ✅ Tipe Data           | Contoh: price → number, firstname → string                             |
-| ✅ Field Kosong        | Semua field harus divalidasi tidak kosong                              |
-| ✅ Alur UI             | Tombol, alert, dan tampilan harus sesuai ekspektasi pengguna awam      |
-| ✅ Path & Auth         | Pastikan endpoint dan otorisasi berfungsi dengan benar                 |
+## ✅ Validasi
+ 
+1. Inputan Username dan Password harus sesuai.
+2. Jenis Inputan pada verifikasi Data harus sesuai.
+3. Semua kolom isian tidak boleh dibiarkan kosong saat pengguna mengisi formulir.
+4. Tampilan aplikasi harus jelas, tombol bisa ditekan dengan mudah, dan pesan muncul di saat yang tepat.
 
 ---
 
-## 👤 Untuk Siapa Dokumentasi Ini?
+## Run Preview 
+ctrl + shift + v 
 
-Dokumentasi ini ditujukan agar:
-- ✅ User awam dapat memahami proses bisnis dari login hingga transaksi selesai
-- ✅ Developer dan QA bisa membuat test case berdasarkan flow yang jelas
-- ✅ PM bisa menjelaskan fitur ke stakeholder non-teknis dengan mudah
-
----
-
-## 🧾 Catatan Tambahan
-
-
-📸 Untuk memperjelas, tambahkan screenshot dari setiap halaman: 
-- Halaman Login
-![Tampilan VSCode Dokumentasi](./assets/C2.png)
-
-- Inventory (produk)
-- Cart
-- Checkout
-- Order Confirmation
-
-🎥 (Opsional) Buat walkthrough video berdurasi 3–5 menit menjelaskan alur login sampai checkout.
